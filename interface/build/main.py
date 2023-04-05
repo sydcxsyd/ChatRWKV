@@ -1,0 +1,3 @@
+
+def onClickStart():
+	print("onClickStart")

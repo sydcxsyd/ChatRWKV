@@ -42,7 +42,7 @@ torch.backends.cuda.matmul.allow_tf32 = True
 ########################################################################################################
 
 # args.strategy = 'cpu fp32'
-args.strategy = 'cuda fp16'
+args.strategy = 'cuda fp16 *28 -> cpu fp32'
 # args.strategy = 'cuda:0 fp16 -> cuda:1 fp16'
 # args.strategy = 'cuda fp16i8 *10 -> cuda fp16'
 # args.strategy = 'cuda fp16i8'
@@ -52,7 +52,7 @@ args.strategy = 'cuda fp16'
 os.environ["RWKV_JIT_ON"] = '1' # '1' or '0', please use torch 1.13+ and benchmark speed
 os.environ["RWKV_CUDA_ON"] = '0' # '1' to compile CUDA kernel (10x faster), requires c++ compiler & cuda libraries
 
-CHAT_LANG = 'English' # English // Chinese // more to come
+CHAT_LANG = 'Chinese' # English // Chinese // more to come
 
 # Download RWKV models from https://huggingface.co/BlinkDL
 # Use '/' in model path, instead of '\'
@@ -66,7 +66,9 @@ if CHAT_LANG == 'English':
     # args.MODEL_NAME = 'cuda_fp16_RWKV-4-Pile-7B-20230109-ctx4096' # use convert_model.py for faster loading & saves CPU RAM
 
 elif CHAT_LANG == 'Chinese': # testNovel系列是小说模型，请只用 +gen 指令续写。Raven系列可以对话和问答，推荐用 +i 做长问答（只用了小中文语料，纯属娱乐）
-    args.MODEL_NAME = '/fsx/BlinkDL/HF-MODEL/rwkv-4-pile-7b/RWKV-4-Pile-7B-EngChn-testNovel-done-ctx2048-20230317'
+    args.MODEL_NAME = 'F:\\work\\ChatRWKV\\model\\RWKV-4-Pile-3B-Chn-testNovel-done-ctx2048-20230312'
+    
+    # args.MODEL_NAME = '/fsx/BlinkDL/HF-MODEL/rwkv-4-pile-7b/RWKV-4-Pile-7B-EngChn-testNovel-done-ctx2048-20230317'
     # args.MODEL_NAME = '/fsx/BlinkDL/HF-MODEL/rwkv-4-raven/RWKV-4-Raven-7B-v6-ChnEng-20230401-ctx2048' # try +i for "Alpaca instruct"
     # args.MODEL_NAME = '/fsx/BlinkDL/HF-MODEL/rwkv-4-raven/RWKV-4-Raven-3B-v7-ChnEng-20230404-ctx2048' # try +i for "Alpaca instruct"
     # args.MODEL_NAME = '/fsx/BlinkDL/HF-MODEL/rwkv-4-pile-3b/RWKV-4-Pile-3B-EngChn-testNovel-done-ctx2048-20230226'

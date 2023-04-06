@@ -13,7 +13,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"F:\work\ChatRWKV\interface\build\assets\frame0")
 
-import main
+
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
@@ -23,8 +23,6 @@ window = Tk()
 window.geometry("837x624")
 window.configure(bg = "#FFFFFF")
 
-def onClick():
-    main.onClickStart();
 
 canvas = Canvas(
     window,
@@ -83,7 +81,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=onClick ,
+    command=lambda: print("button_1 clicked"),
     relief="flat"
 )
 button_1.place(
@@ -158,7 +156,5 @@ canvas.create_rectangle(
     226.0,
     fill="#D9D9D9",
     outline="")
-
-
 window.resizable(False, False)
-window.mainloop()
+

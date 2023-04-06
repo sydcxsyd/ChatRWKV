@@ -42,6 +42,7 @@ torch.backends.cuda.matmul.allow_tf32 = True
 ########################################################################################################
 
 # args.strategy = 'cpu fp32'
+# args.strategy = 'cuda fp16'
 args.strategy = 'cuda fp16 *28 -> cpu fp32'
 # args.strategy = 'cuda:0 fp16 -> cuda:1 fp16'
 # args.strategy = 'cuda fp16i8 *10 -> cuda fp16'
@@ -50,7 +51,7 @@ args.strategy = 'cuda fp16 *28 -> cpu fp32'
 # args.strategy = 'cuda fp16i8 *10+'
 
 os.environ["RWKV_JIT_ON"] = '1' # '1' or '0', please use torch 1.13+ and benchmark speed
-os.environ["RWKV_CUDA_ON"] = '0' # '1' to compile CUDA kernel (10x faster), requires c++ compiler & cuda libraries
+os.environ["RWKV_CUDA_ON"] = '1' # '1' to compile CUDA kernel (10x faster), requires c++ compiler & cuda libraries
 
 CHAT_LANG = 'Chinese' # English // Chinese // more to come
 
